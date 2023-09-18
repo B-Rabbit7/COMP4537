@@ -1,6 +1,5 @@
 function NoteManager() {
     this.notes = [];
-
     // Load notes
     this.loadNotes = function () {
         const notesSaved = JSON.parse(localStorage.getItem("notes")) || [];
@@ -11,7 +10,6 @@ function NoteManager() {
             note.textBox.value = noteValues.content;
         });
     }
-
     // Create a new note and add it to the notes array
     this.createNote = function () {
         const note = new Note();
@@ -22,7 +20,6 @@ function NoteManager() {
         });
         this.saveNotes();
     };
-
     // Remove a note
     this.removeThisNote = function (noteID) {
         const indexToRemove = this.notes.findIndex(note => Number(note.textBox.id) === noteID);
@@ -32,7 +29,6 @@ function NoteManager() {
             this.saveNotes();
         }
     };
-
     // Save notes
     this.saveNotes = function () {
         const notesData = this.notes.map((savedNote) => ({
@@ -40,25 +36,19 @@ function NoteManager() {
         }));
         localStorage.setItem("notes", JSON.stringify(notesData));
     }
+    setInterval(() => {this.saveNotes();}, 2000);
 
-    setInterval(() => {
-                this.saveNotes();
-              }, 2000);
-
-    this.loadNotes(); // Load notes on initialization
+    this.loadNotes();
 }
-
 function Note() {
     const self = this;
     this.textBox = document.createElement("input");
     this.textBox.type = "text";
     this.textBox.name = "note";
     this.textBox.placeholder = "Enter your note here...";
-
     this.removeButton = document.createElement("button");
     this.removeButton.type = "submit";
     this.removeButton.textContent = "remove";
-
     // Method to create an HTML unit of div, input, and remove button
     this.createTextBox = function (index) {
         const section = document.getElementById("textContainer");
@@ -68,7 +58,6 @@ function Note() {
         this.removeButton.id= index
         this.textBox.id = index
     };
-
     // Method to remove this created note from the page
     this.removeTextBox = function () {
         let textContainer = this.textBox.parentElement;
@@ -76,18 +65,12 @@ function Note() {
         textContainer.removeChild(this.removeButton);
     };
 }
-
-// Outside note manager
 const noteManager = new NoteManager();
-
-// Triggered every time the add button is pressed
 const addButton = document.getElementById("add");
 addButton.addEventListener("click", () => {
     noteManager.createNote();
 });
-
 const textContainer = document.getElementById("textContainer");
-
 textContainer.addEventListener("click", (event) => {
     if (event.target.tagName === "BUTTON") {
         const noteId = event.target.id;
@@ -96,15 +79,9 @@ textContainer.addEventListener("click", (event) => {
         }
     }
 });
-
-function clearStorage() {
-    localStorage.clear();
-}
 function showTime(){
     const now = new Date();
     const currentDateTime = now.toLocaleString();
     document.querySelector('#datetime').textContent = currentDateTime;
   }
   setInterval(() => {showTime();}, 1000);
-
-// clearStorage();
