@@ -100,16 +100,11 @@ textContainer.addEventListener("click", (event) => {
 function clearStorage() {
     localStorage.clear();
 }
-
 function showTime(){
     const now = new Date();
-    // get the current date and time as a string
     const currentDateTime = now.toLocaleString();
     document.querySelector('#datetime').textContent = currentDateTime;
   }
-  
-  setInterval(() => {
-    showTime();
-  }, 1000);
+  setInterval(() => {showTime();}, 1000);
 
 // clearStorage();
