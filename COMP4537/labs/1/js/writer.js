@@ -40,8 +40,8 @@ function NoteManager() {
 
     this.loadNotes();
 }
+// Note Object
 function Note() {
-    const self = this;
     this.textBox = document.createElement("input");
     this.textBox.type = "text";
     this.textBox.name = "note";
@@ -49,12 +49,12 @@ function Note() {
     this.removeButton = document.createElement("button");
     this.removeButton.type = "submit";
     this.removeButton.textContent = "remove";
+
     // Method to create an HTML unit of div, input, and remove button
     this.createTextBox = function (index) {
         const section = document.getElementById("textContainer");
         section.appendChild(this.textBox);
         section.appendChild(this.removeButton);
-
         this.removeButton.id= index
         this.textBox.id = index
     };
@@ -79,6 +79,7 @@ textContainer.addEventListener("click", (event) => {
         }
     }
 });
+// Show time on page
 function showTime(){
     const now = new Date();
     const currentDateTime = now.toLocaleString();
