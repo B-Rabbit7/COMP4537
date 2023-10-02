@@ -1,4 +1,4 @@
-exports.getDateTime = function (){
+exports.getDate = function (){
     const date = new Date()
     return date;
 }

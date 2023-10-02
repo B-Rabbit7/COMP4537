@@ -9,7 +9,7 @@ const server = http.createServer((req, res) => {
         res.writeHead(200, {
             'Content-Type': 'text/html'
         });
-        res.write(`<b><span style="color: blue;">Hello ${q.query["name"]}, what a beautiful day. The current date and time is: ${date.getDateTime()}</span><b>`);
+        res.write(`<b><span style="color: blue;">Hello ${q.query["name"]}, what a beautiful day. The current date and time is: ${date.getDate()}</span><b>`);
         res.end
     } else {
         res.writeHead(404, {
